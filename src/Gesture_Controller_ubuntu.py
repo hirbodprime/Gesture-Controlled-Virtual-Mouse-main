@@ -165,17 +165,17 @@ class Controller:
             currentBrightnessLv = 0.0       
         sbcontrol.fade_brightness(int(100*currentBrightnessLv) , start = sbcontrol.get_brightness(display=0))
     
-    def changesystemvolume():
-        devices = AudioUtilities.GetSpeakers()
-        interface = devices.Activate(IAudioEndpointVolume._iid_, None)
-        volume = cast(interface, POINTER(IAudioEndpointVolume))
-        currentVolumeLv = volume.GetMasterVolumeLevelScalar()
-        currentVolumeLv += Controller.pinchlv/50.0
-        if currentVolumeLv > 1.0:
-            currentVolumeLv = 1.0
-        elif currentVolumeLv < 0.0:
-            currentVolumeLv = 0.0
-        volume.SetMasterVolumeLevelScalar(currentVolumeLv, None)
+    # def changesystemvolume():
+    #     devices = AudioUtilities.GetSpeakers()
+    #     interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    #     volume = cast(interface, POINTER(IAudioEndpointVolume))
+    #     currentVolumeLv = volume.GetMasterVolumeLevelScalar()
+    #     currentVolumeLv += Controller.pinchlv/50.0
+    #     if currentVolumeLv > 1.0:
+    #         currentVolumeLv = 1.0
+    #     elif currentVolumeLv < 0.0:
+    #         currentVolumeLv = 0.0
+    #     volume.SetMasterVolumeLevelScalar(currentVolumeLv, None)
     
     def scrollVertical():
         pyautogui.scroll(120 if Controller.pinchlv>0.0 else -120)
@@ -292,11 +292,11 @@ class Controller:
                 Controller.pinchminorflag = True
             Controller.pinch_control(hand_result,Controller.scrollHorizontal, Controller.scrollVertical)
         
-        elif gesture == Gest.PINCH_MAJOR:
-            if Controller.pinchmajorflag == False:
-                Controller.pinch_control_init(hand_result)
-                Controller.pinchmajorflag = True
-            Controller.pinch_control(hand_result,Controller.changesystembrightness, Controller.changesystemvolume)
+        # elif gesture == Gest.PINCH_MAJOR:
+        #     if Controller.pinchmajorflag == False:
+        #         Controller.pinch_control_init(hand_result)
+        #         Controller.pinchmajorflag = True
+        #     Controller.pinch_control(hand_result,Controller.changesystembrightness, Controller.changesystemvolume)
         
 class GestureController(threading.Thread):
     gc_mode = 0
