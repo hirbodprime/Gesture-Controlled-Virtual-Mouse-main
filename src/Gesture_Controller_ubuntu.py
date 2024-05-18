@@ -7,7 +7,7 @@ import math
 import threading
 from enum import IntEnum
 # from ctypes import cast, POINTER
-from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+# from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
 from google.protobuf.json_format import MessageToDict
 import screen_brightness_control as sbcontrol
 
